@@ -1,0 +1,133 @@
+/* Dourado Theme Variables & Resets */
+:root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 88%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 88%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 88%;
+    
+    /* Dourado Theme */
+    --primary: 45 93% 47%;
+    --primary-foreground: 0 0% 10%;
+    --primary-glow: 45 100% 60%;
+    
+    --secondary: 45 30% 20%;
+    --secondary-foreground: 0 0% 88%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 45 93% 47%;
+    --accent-foreground: 0 0% 10%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 45 30% 15%;
+    --input: 45 30% 15%;
+    --ring: 45 93% 47%;
+    --radius: .75rem;
+}
+
+body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Custom Utilities & Components */
+.text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(135deg, hsl(45 93% 47%), hsl(45 100% 70%));
+}
+
+.cta-button {
+    background-color: #22c55e !important; /* Verde Grama */
+    color: white !important;
+    box-shadow: 0 10px 30px -10px rgba(34, 197, 94, 0.6);
+    transition: all 0.3s ease;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.cta-button:hover {
+    background-color: #16a34a !important;
+    box-shadow: 0 15px 40px -10px rgba(34, 197, 94, 0.8);
+    transform: translateY(-2px) scale(1.02);
+}
+
+.proofs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+.proof-item {
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid hsl(var(--border));
+    background: hsl(var(--card));
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    aspect-ratio: 9/16; /* Mobile video format */
+    position: relative;
+}
+
+.proof-item.image-proof {
+    aspect-ratio: auto;
+    min-height: 300px;
+}
+
+.proof-item:hover {
+    transform: translateY(-5px);
+    border-color: hsl(var(--primary));
+    box-shadow: 0 15px 40px -10px hsla(45, 93%, 47%, 0.2);
+}
+
+.proof-item video, .proof-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.proof-item.image-proof img {
+    position: relative;
+}
+
+/* Decorative lighting */
+.glow-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+.glow-blob {
+    position: absolute;
+    width: 40rem;
+    height: 40rem;
+    background: radial-gradient(circle, hsla(45, 93%, 47%, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    top: -10rem;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: blur(60px);
+}
+
+.glow-blob-2 {
+    position: absolute;
+    width: 30rem;
+    height: 30rem;
+    background: radial-gradient(circle, hsla(45, 93%, 47%, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    bottom: 10rem;
+    right: -10rem;
+    filter: blur(50px);
+}
