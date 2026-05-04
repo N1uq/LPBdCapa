@@ -1,181 +1,250 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BOT DO CAPA – Gerador de Sensi IA</title>
-    <meta name="description" content="Gerando a sensibilidade perfeita para o seu Free Fire com Inteligência Artificial.">
-    
+    <meta name="description"
+        content="Gerando a sensibilidade perfeita para o seu Free Fire com Inteligência Artificial.">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Outfit', 'sans-serif'],
-            },
-            colors: {
-              background: "hsl(0 0% 4%)",
-              foreground: "hsl(0 0% 88%)",
-              card: "hsl(0 0% 7%)",
-              "card-foreground": "hsl(0 0% 88%)",
-              primary: "hsl(45 93% 47%)", /* Dourado */
-              "primary-glow": "hsl(45 100% 60%)",
-              "primary-foreground": "hsl(0 0% 10%)",
-              muted: "hsl(0 0% 10%)",
-              "muted-foreground": "hsl(0 0% 60%)",
-              border: "hsl(45 30% 15%)",
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        background: "hsl(0 0% 4%)",
+                        foreground: "hsl(0 0% 88%)",
+                        card: "hsl(0 0% 7%)",
+                        "card-foreground": "hsl(0 0% 88%)",
+                        primary: "hsl(45 93% 47%)", /* Dourado */
+                        "primary-glow": "hsl(45 100% 60%)",
+                        "primary-foreground": "hsl(0 0% 10%)",
+                        muted: "hsl(0 0% 10%)",
+                        "muted-foreground": "hsl(0 0% 60%)",
+                        border: "hsl(45 30% 15%)",
+                    }
+                }
             }
-          }
         }
-      }
     </script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="antialiased selection:bg-primary/30 selection:text-primary min-h-screen flex items-center justify-center relative overflow-hidden">
 
-  <div class="glow-bg">
-    <div class="glow-blob"></div>
-    <div class="glow-blob-2"></div>
-  </div>
+<body
+    class="antialiased selection:bg-primary/30 selection:text-primary min-h-screen flex items-center justify-center relative overflow-hidden">
 
-  <div class="container mx-auto px-4 relative z-10 w-full max-w-lg">
-    
-    <!-- Loading Screen -->
-    <div id="loadingScreen" class="text-center flex flex-col items-center justify-center transition-opacity duration-500">
-        <h1 class="text-3xl md:text-4xl font-black tracking-wider uppercase mb-8 drop-shadow-lg">BOT DO <span class="text-gradient">CAPA</span> IA</h1>
-        
-        <div class="w-28 h-28 mb-8 relative">
-            <!-- AI Loading Animation / Spinner -->
-            <div class="absolute inset-0 border-4 border-muted rounded-full"></div>
-            <div class="absolute inset-0 border-4 border-primary border-t-transparent rounded-full animate-spin drop-shadow-[0_0_10px_rgba(255,215,0,0.5)]"></div>
-            <div class="absolute inset-0 flex items-center justify-center font-black text-2xl" id="progressText">0%</div>
-        </div>
-
-        <p id="loadingStatus" class="text-xl text-primary font-bold animate-pulse mb-6 h-8 tracking-wide">Iniciando Inteligência Artificial...</p>
-        
-        <div class="w-full h-3 bg-muted rounded-full overflow-hidden border border-border shadow-inner">
-            <div id="progressBar" class="h-full bg-gradient-to-r from-yellow-600 to-primary w-0 transition-all duration-300 ease-out shadow-[0_0_10px_rgba(255,215,0,0.5)] relative">
-                <div class="absolute top-0 bottom-0 right-0 w-20 bg-gradient-to-r from-transparent to-white/30"></div>
-            </div>
-        </div>
+    <div class="glow-bg">
+        <div class="glow-blob"></div>
+        <div class="glow-blob-2"></div>
     </div>
 
-    <!-- Options Screen (Hidden Initially) -->
-    <div id="optionsScreen" class="text-center flex flex-col items-center justify-center opacity-0 hidden transition-opacity duration-500">
-        <div class="mb-8">
-            <div class="inline-block bg-primary/10 border border-primary/30 text-primary px-4 py-1.5 rounded-full font-bold text-sm mb-4 animate-pulse">
-                ✓ ANÁLISE CONCLUÍDA
+    <div class="container mx-auto px-4 relative z-10 w-full max-w-lg">
+
+        <!-- Loading Screen -->
+        <div id="loadingScreen"
+            class="text-center flex flex-col items-center justify-center transition-opacity duration-500">
+            <h1 class="text-3xl md:text-4xl font-black tracking-wider uppercase mb-8 drop-shadow-lg">BOT DO <span
+                    class="text-gradient">CAPA</span> IA</h1>
+
+            <div class="w-28 h-28 mb-8 relative">
+                <!-- AI Loading Animation / Spinner -->
+                <div class="absolute inset-0 border-4 border-muted rounded-full"></div>
+                <div
+                    class="absolute inset-0 border-4 border-primary border-t-transparent rounded-full animate-spin drop-shadow-[0_0_10px_rgba(255,215,0,0.5)]">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center font-black text-2xl" id="progressText">0%
+                </div>
             </div>
-            <h2 class="text-3xl md:text-4xl font-black tracking-wider uppercase mb-3">SENSI <span class="text-gradient">GERADA</span></h2>
-            <p class="text-muted-foreground text-lg">Escolha o estilo de sensibilidade ideal para o seu celular.</p>
+
+            <p id="loadingStatus" class="text-xl text-primary font-bold animate-pulse mb-6 h-8 tracking-wide">Iniciando
+                Inteligência Artificial...</p>
+
+            <div class="w-full h-3 bg-muted rounded-full overflow-hidden border border-border shadow-inner">
+                <div id="progressBar"
+                    class="h-full bg-gradient-to-r from-yellow-600 to-primary w-0 transition-all duration-300 ease-out shadow-[0_0_10px_rgba(255,215,0,0.5)] relative">
+                    <div class="absolute top-0 bottom-0 right-0 w-20 bg-gradient-to-r from-transparent to-white/30">
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="w-full space-y-4">
-            <button onclick="window.location.href='https://ggcheckout.app/checkout/v5/hCpPGoGPXTGOJylSRYY0'" class="w-full group relative overflow-hidden rounded-2xl border-2 border-border bg-card hover:border-primary transition-all duration-300 shadow-lg">
-                <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="p-6 flex items-center justify-between relative z-10">
-                    <div class="flex items-center gap-5">
-                        <div class="text-4xl drop-shadow-[0_0_15px_rgba(255,215,0,0.4)] transition-transform duration-300 group-hover:scale-110">🔥</div>
-                        <div class="text-left">
-                            <h3 class="text-2xl font-black text-white group-hover:text-primary transition-colors uppercase tracking-wide">Sensi Alta</h3>
-                            <p class="text-sm text-muted-foreground font-medium mt-1">Movimentação extrema e puxada forte.</p>
-                        </div>
-                    </div>
-                    <div class="text-primary text-2xl font-bold group-hover:translate-x-2 transition-transform">→</div>
+
+        <!-- Options Screen (Hidden Initially) -->
+        <div id="optionsScreen"
+            class="text-center flex flex-col items-center justify-center opacity-0 hidden transition-opacity duration-500">
+            <div class="mb-8">
+                <div
+                    class="inline-block bg-primary/10 border border-primary/30 text-primary px-4 py-1.5 rounded-full font-bold text-sm mb-4 animate-pulse">
+                    ✓ ANÁLISE CONCLUÍDA
                 </div>
-            </button>
-
-            <button onclick="window.location.href='https://ggcheckout.app/checkout/v5/2tDXBJspr9qVNRMqgp1H'" class="w-full group relative overflow-hidden rounded-2xl border-2 border-border bg-card hover:border-primary transition-all duration-300 shadow-lg">
-                <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="p-6 flex items-center justify-between relative z-10">
-                    <div class="flex items-center gap-5">
-                        <div class="text-4xl drop-shadow-[0_0_15px_rgba(255,215,0,0.4)] transition-transform duration-300 group-hover:scale-110">⚡</div>
-                        <div class="text-left">
-                            <h3 class="text-2xl font-black text-white group-hover:text-primary transition-colors uppercase tracking-wide">Sensi Média</h3>
-                            <p class="text-sm text-muted-foreground font-medium mt-1">O equilíbrio perfeito entre capa e controle.</p>
-                        </div>
-                    </div>
-                    <div class="text-primary text-2xl font-bold group-hover:translate-x-2 transition-transform">→</div>
-                </div>
-            </button>
-
-            <button onclick="window.location.href='https://ggcheckout.app/checkout/v5/p4LfktdPJToSwCtzUYId'" class="w-full group relative overflow-hidden rounded-2xl border-2 border-border bg-card hover:border-primary transition-all duration-300 shadow-lg">
-                <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="p-6 flex items-center justify-between relative z-10">
-                    <div class="flex items-center gap-5">
-                        <div class="text-4xl drop-shadow-[0_0_15px_rgba(255,215,0,0.4)] transition-transform duration-300 group-hover:scale-110">🎯</div>
-                        <div class="text-left">
-                            <h3 class="text-2xl font-black text-white group-hover:text-primary transition-colors uppercase tracking-wide">Sensi Baixa</h3>
-                            <p class="text-sm text-muted-foreground font-medium mt-1">Focada em precisão cirúrgica de longe.</p>
-                        </div>
-                    </div>
-                    <div class="text-primary text-2xl font-bold group-hover:translate-x-2 transition-transform">→</div>
-                </div>
-            </button>
-        </div>
-    </div>
-  </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const progressText = document.getElementById('progressText');
-        const progressBar = document.getElementById('progressBar');
-        const loadingStatus = document.getElementById('loadingStatus');
-        const loadingScreen = document.getElementById('loadingScreen');
-        const optionsScreen = document.getElementById('optionsScreen');
-
-        const stages = [
-            "Conectando ao servidor...",
-            "Analisando hardware...",
-            "Calculando DPI ideal...",
-            "Ajustando precisão da mira...",
-            "Finalizando Sensi..."
-        ];
-
-        let progress = 0;
-        const totalTime = 4000; // 4 segundos de carregamento
-        const intervalTime = 40;
-        const increment = 100 / (totalTime / intervalTime);
-
-        const loadingInterval = setInterval(() => {
-            progress += increment;
-            
-            if (progress >= 100) {
-                progress = 100;
-                clearInterval(loadingInterval);
-                loadingStatus.textContent = "Sensi Gerada com Sucesso!";
+                <h2 class="text-3xl md:text-4xl font-black tracking-wider uppercase mb-3">SENSI <span
+                        class="text-gradient">GERADA</span></h2>
                 
-                setTimeout(() => {
-                    loadingScreen.style.opacity = '0';
+                <!-- Video VSL -->
+                <div class="w-full relative rounded-2xl overflow-hidden border-2 border-primary/30 hover:border-primary/60 transition-colors duration-300 shadow-[0_0_15px_rgba(255,215,0,0.15)] mb-6 mt-2">
+                    <video id="vslVideo" src="https://i.imgur.com/kcfHQKb.mp4" class="w-full block aspect-video object-cover" controls autoplay muted loop playsinline></video>
+                    
+                    <!-- Overlay de Unmute (Padrão VSL) -->
+                    <div id="unmuteOverlay" class="absolute inset-0 bg-black/60 flex items-center justify-center cursor-pointer z-10 hover:bg-black/50 transition-colors" onclick="unmuteVideo()">
+                        <div class="bg-primary text-black font-black px-6 py-3 rounded-full flex items-center gap-3 animate-pulse shadow-[0_0_20px_rgba(255,215,0,0.5)]">
+                            <span class="text-2xl">🔊</span> 
+                            <span class="text-lg uppercase tracking-wide">Clique para ouvir</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-muted-foreground text-lg">Escolha o estilo de sensibilidade ideal para o seu celular.</p>
+            </div>
+
+            <div class="w-full space-y-4">
+                <button onclick="window.location.href='https://serverflow.dad/c/sensi-alta'"
+                    class="w-full group relative overflow-hidden rounded-2xl border-2 border-border bg-card hover:border-primary transition-all duration-300 shadow-lg">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                    <div class="p-6 flex items-center justify-between relative z-10">
+                        <div class="flex items-center gap-5">
+                            <div
+                                class="text-4xl drop-shadow-[0_0_15px_rgba(255,215,0,0.4)] transition-transform duration-300 group-hover:scale-110">
+                                🔥</div>
+                            <div class="text-left">
+                                <h3
+                                    class="text-2xl font-black text-white group-hover:text-primary transition-colors uppercase tracking-wide">
+                                    Sensi Alta</h3>
+                                <p class="text-sm text-muted-foreground font-medium mt-1">Movimentação extrema e puxada
+                                    forte.</p>
+                            </div>
+                        </div>
+                        <div class="text-primary text-2xl font-bold group-hover:translate-x-2 transition-transform">→
+                        </div>
+                    </div>
+                </button>
+
+                <button onclick="window.location.href='https://serverflow.dad/c/sensi-m-dia'"
+                    class="w-full group relative overflow-hidden rounded-2xl border-2 border-border bg-card hover:border-primary transition-all duration-300 shadow-lg">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                    <div class="p-6 flex items-center justify-between relative z-10">
+                        <div class="flex items-center gap-5">
+                            <div
+                                class="text-4xl drop-shadow-[0_0_15px_rgba(255,215,0,0.4)] transition-transform duration-300 group-hover:scale-110">
+                                ⚡</div>
+                            <div class="text-left">
+                                <h3
+                                    class="text-2xl font-black text-white group-hover:text-primary transition-colors uppercase tracking-wide">
+                                    Sensi Média</h3>
+                                <p class="text-sm text-muted-foreground font-medium mt-1">O equilíbrio perfeito entre
+                                    capa e controle.</p>
+                            </div>
+                        </div>
+                        <div class="text-primary text-2xl font-bold group-hover:translate-x-2 transition-transform">→
+                        </div>
+                    </div>
+                </button>
+
+                <button onclick="window.location.href='https://serverflow.dad/c/sensi-baixa'"
+                    class="w-full group relative overflow-hidden rounded-2xl border-2 border-border bg-card hover:border-primary transition-all duration-300 shadow-lg">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    </div>
+                    <div class="p-6 flex items-center justify-between relative z-10">
+                        <div class="flex items-center gap-5">
+                            <div
+                                class="text-4xl drop-shadow-[0_0_15px_rgba(255,215,0,0.4)] transition-transform duration-300 group-hover:scale-110">
+                                🎯</div>
+                            <div class="text-left">
+                                <h3
+                                    class="text-2xl font-black text-white group-hover:text-primary transition-colors uppercase tracking-wide">
+                                    Sensi Baixa</h3>
+                                <p class="text-sm text-muted-foreground font-medium mt-1">Focada em precisão cirúrgica
+                                    de longe.</p>
+                            </div>
+                        </div>
+                        <div class="text-primary text-2xl font-bold group-hover:translate-x-2 transition-transform">→
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const progressText = document.getElementById('progressText');
+            const progressBar = document.getElementById('progressBar');
+            const loadingStatus = document.getElementById('loadingStatus');
+            const loadingScreen = document.getElementById('loadingScreen');
+            const optionsScreen = document.getElementById('optionsScreen');
+
+            const stages = [
+                "Conectando ao servidor...",
+                "Analisando hardware...",
+                "Calculando DPI ideal...",
+                "Ajustando precisão da mira...",
+                "Finalizando Sensi..."
+            ];
+
+            let progress = 0;
+            const totalTime = 4000; // 4 segundos de carregamento
+            const intervalTime = 40;
+            const increment = 100 / (totalTime / intervalTime);
+
+            const loadingInterval = setInterval(() => {
+                progress += increment;
+
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(loadingInterval);
+                    loadingStatus.textContent = "Sensi Gerada com Sucesso!";
+
                     setTimeout(() => {
-                        loadingScreen.classList.add('hidden');
-                        optionsScreen.classList.remove('hidden');
-                        
-                        // Force reflow
-                        void optionsScreen.offsetWidth;
-                        optionsScreen.style.opacity = '1';
-                    }, 500);
-                }, 800);
-            } else {
-                const stageIndex = Math.floor((progress / 100) * stages.length);
-                if(stages[stageIndex]) {
-                    loadingStatus.textContent = stages[stageIndex];
+                        loadingScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingScreen.classList.add('hidden');
+                            optionsScreen.classList.remove('hidden');
+
+                            // Force reflow
+                            void optionsScreen.offsetWidth;
+                            optionsScreen.style.opacity = '1';
+                        }, 500);
+                    }, 800);
+                } else {
+                    const stageIndex = Math.floor((progress / 100) * stages.length);
+                    if (stages[stageIndex]) {
+                        loadingStatus.textContent = stages[stageIndex];
+                    }
                 }
+
+                progressText.textContent = `${Math.floor(progress)}%`;
+                progressBar.style.width = `${progress}%`;
+
+            }, intervalTime);
+        });
+
+        // Função para ativar o som do vídeo VSL
+        function unmuteVideo() {
+            const video = document.getElementById('vslVideo');
+            const overlay = document.getElementById('unmuteOverlay');
+            if (video) {
+                video.muted = false;
+                video.currentTime = 0; // Reinicia o vídeo para ouvir desde o começo
+                video.play();
             }
-
-            progressText.textContent = `${Math.floor(progress)}%`;
-            progressBar.style.width = `${progress}%`;
-
-        }, intervalTime);
-    });
-
-
-  </script>
+            if (overlay) {
+                overlay.style.display = 'none';
+            }
+        }
+    </script>
 </body>
+
 </html>
